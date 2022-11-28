@@ -116,8 +116,17 @@ class Monster:
 class Macaque(Monster):
     def __init__ (self, name):
         super().__init__(name, random.randrange(7,20), {"bite":["bites",random.randrange(70,101), (10,20)]}, 180 + random.randrange(-20,21))
+        
 
 class Drowned(Monster):
     def __init__ (self, name):
         super().__init__(name, random.randrange(7,20), {"bite":["bites",random.randrange(35,51), (5,15)],"punch":["punches",random.randrange(35,51), (1,10)],"punch":["punches",random.randrange(35,51), (1,10)]}, 75 + random.randrange(-10,11))
+        #name, health, 
 
+class Guard(Monster):
+    def __init__ (self, name):
+        super().__init__(name, random.randrange(7,20), {"bite":["bites",random.randrange(1,15), (5,15)],"punch":["punches",random.randrange(5,20), (1,10)],"punch":["punches",random.randrange(35,51), (1,10)]}, 75 + random.randrange(-10,11))
+
+class Unknown(Monster):
+    def __init__ (self, name):
+        super().__init__(name, random.randrange(7,20), {"bite":["bites",random.randrange(35,51), (5,15)],"punch":["punches",random.randrange(35,51), (1,10)],"punch":["punches",random.randrange(35,51), (1,10)]}, 75 + random.randrange(-10,11))    

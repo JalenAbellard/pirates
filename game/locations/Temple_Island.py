@@ -79,8 +79,8 @@ class Temple (location.SubLocation):
         self.verbs['forward'] = self
         self.verbs['backward'] = self
         self.event_chance = 50
-        #self.events.append(man_eating_monkeys.ManEatingMonkeys())
-        #self.events.append(drowned_pirates.DrownedPirates())
+        self.events.append(Undead_Guard.UndeadGuard())
+        self.events.append(drowned_pirates.DrownedPirates())
 
     def enter (self):
         announce ("You push through two large doors, a immediate sense of unease washes over you, this is no ordinary temple...you can either push forward or retreat")
@@ -93,12 +93,12 @@ class Temple (location.SubLocation):
             announce ("You ran into a wall...nice")
 
         elif (verb == "forwards"):
-            config.the_player.next_loc = self.main_location.locations["room_1"]
+            config.the_player.next_loc = self.main_location.locations["Room_1"]
 
 class Room_1 (location.SubLocation):
     def __init__ (self, m):
         super().__init__(m)
-        self.name = "trees"
+        self.name = "Room 1"
         self.verbs['left'] = self
         self.verbs['right'] = self
         self.verbs['forward'] = self
@@ -114,11 +114,37 @@ class Room_1 (location.SubLocation):
         if (verb == "backward"):
             config.the_player.next_loc = self.main_location.locations["beach"]
 
-        elif (verb == "left" or ver == "right"):
+        elif (verb == "left" or verb == "right"):
             announce ("You ran into a wall...nice")
 
         elif (verb == "forwards"):
-            config.the_player.next_loc = self.main_location.locations["room_1"]
-            
+            config.the_player.next_loc = self.main_location.locations["room_W"]
+
+class Room_2 (location.SubLocation):
+    def __init__ (self, m):
+        super().__init__(m)
+        self.name = "Room 1"
+        self.verbs['left'] = self
+        self.verbs['right'] = self
+        self.verbs['forward'] = self
+        self.verbs['backward'] = self
+        self.event_chance = 50
+        #self.events.append(man_eating_monkeys.ManEatingMonkeys())
+        #self.events.append(drowned_pirates.DrownedPirates())
+
+    def enter (self):
+        announce (" ")
+    
+    def process_verb (self, verb, cmd_list, nouns):
+        if (verb == "backward"):
+            config.the_player.next_loc = self.main_location.locations["beach"]
+
+        elif (verb == "left" or verb == "right"):
+            announce ("You ran into a wall...nice")
+
+        elif (verb == "forwards"):
+            config.the_player.next_loc = self.main_location.locations["room_W"]
+
+
 
 
