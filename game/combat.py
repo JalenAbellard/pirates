@@ -1,4 +1,4 @@
-import random
+mport random
 import game.config as config
 from game.display import announce
 from game.display import menu
@@ -132,8 +132,16 @@ class Drowned(Monster):
 
 class Guard(Monster):
     def __init__ (self, name):
-        super().__init__(name, random.randrange(7,20), {"bite":["bites",random.randrange(1,15), (5,15)],"punch":["punches",random.randrange(5,20), (1,10)],"punch":["punches",random.randrange(35,51), (1,10)]}, 75 + random.randrange(-10,11))
+        attacks = {}
+        attacks["Head Butt 1"] = ["Head Butt", random.randrange(35, 51), (1, 10)]
+        attacks["Bone Slap 1"] = ["Bone Slaps", random.randrange(35,51), (1,10)] 
+        super().__init__(name, random.randrange(5,10), attacks, 50 + random.randrange(-15, 25))
 
 class Unknown(Monster):
     def __init__ (self, name):
-        super().__init__(name, random.randrange(7,20), {"bite":["bites",random.randrange(35,51), (5,15)],"punch":["punches",random.randrange(35,51), (1,10)],"punch":["punches",random.randrange(35,51), (1,10)]}, 75 + random.randrange(-10,11))    
+        attacks = {}
+        attacks["Roar 1"] = ["Roar", random.randrange(5, 10), (1,10)]
+        attacks["Tail Whip 1"] = ["Tail Whip", random.randrange(5, 10), (1,10)]
+        attacks["Bite 1"] = ["Bite", random.randrange(5, 10), (1,10)]
+        super().__init__(name, random.randrange(5,10), attacks, 50 + random.randrange(-15, 25))
+        
