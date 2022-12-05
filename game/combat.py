@@ -128,14 +128,14 @@ class Drowned(Monster):
         attacks["punch 2"] = ["punches",random.randrange(35,51), (1,10)]
         #7 to 19 hp, bite attack, 65 to 85 speed (100 is "normal")
         super().__init__(name, random.randrange(7,20), attacks, 75 + random.randrange(-10,11))
-        #name, health, 
+         
 
 class Guard(Monster):
     def __init__ (self, name):
         attacks = {}
-        attacks["Head Butt 1"] = ["Head Butt", random.randrange(35, 51), (1, 10)]
+        attacks["Head Butt 1"] = ["Head Butts", random.randrange(35, 51), (1, 10)]
         attacks["Bone Slap 1"] = ["Bone Slaps", random.randrange(35,51), (1,10)] 
-        super().__init__(name, random.randrange(5,10), attacks, 50 + random.randrange(-15, 25))
+        super().__init__(name, random.randrange(5,10), attacks, 20 + random.randrange(-15, 15))
 
 class Unknown(Monster):
     def __init__ (self, name):
@@ -143,5 +143,5 @@ class Unknown(Monster):
         attacks["Roar 1"] = ["Roar", random.randrange(5, 10), (1,10)]
         attacks["Tail Whip 1"] = ["Tail Whip", random.randrange(5, 10), (1,10)]
         attacks["Bite 1"] = ["Bite", random.randrange(5, 10), (1,10)]
-        super().__init__(name, random.randrange(5,10), attacks, 50 + random.randrange(-15, 25))
+        super().__init__(name, random.randrange(90, 150), attacks, 30 + random.randrange(-10, 20))
         

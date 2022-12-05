@@ -4,7 +4,7 @@ from game.combat import Combat
 from game.combat import Unknown
 from game.display import announce
 
-class DrownedPirates (event.Event):
+class UnknownBoss(event.Event):
 
     def __init__ (self):
         self.name = "a monster of immense proportions appears in front of you"

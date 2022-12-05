@@ -15,6 +15,7 @@ class Island (location.Location):
         self.locations = {}
         self.locations["beach"] = self.starting_location
         self.locations["trees"] = Trees(self)
+        self.locations["Temple"] = Temple(self)
 
     def enter (self, ship):
         print ("arrived at an island")
@@ -104,11 +105,11 @@ class Room_1 (location.SubLocation):
         self.verbs['forward'] = self
         self.verbs['backward'] = self
         self.event_chance = 50
-        #self.events.append(man_eating_monkeys.ManEatingMonkeys())
-        #self.events.append(drowned_pirates.DrownedPirates())
+        self.events.append(Undead_Guard.UndeadGuard())
+       
 
     def enter (self):
-        announce ("This room has a long dark tunnel, ")
+        announce ("This room has a long dark tunnel")
     
     def process_verb (self, verb, cmd_list, nouns):
         if (verb == "backward"):
@@ -263,6 +264,33 @@ class Room_5 (location.SubLocation):
 
         elif (verb == "left" or verb == "right"):
            announce ("You ran into a wall...you couldn't see it but...really?")
+
+
+class Room_6 (location.SubLocation):
+    def __init__ (self, m):
+        super().__init__(m)
+        self.name = "Room 6"
+        self.verbs['left'] = self
+        self.verbs['right'] = self
+        self.verbs['forward'] = self
+        self.verbs['backward'] = self
+        self.event_chance = 100
+        self.events.append(Unknown_Boss.UnknownBoss())
+
+        
+        
+    def enter (self):
+        announce ("You come upon a large, open room, something feels off...")
+    
+    def process_verb (self, verb, cmd_list, nouns):
+        if (verb == "backward"):
+            config.the_player.next_loc = self.main_location.locations["beach"]
+
+        elif (verb == "left" or verb == "right"):
+            announce ("You ran to his" + verb + "side, but he can still see you")
+
+        elif (verb == "forwards"):
+            config.the_player.next_loc = self.main_location.locations["room_2"]
 
        
 
