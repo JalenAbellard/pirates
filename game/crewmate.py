@@ -64,6 +64,11 @@ class CrewMate(Context):
             self.sick = False
             announce (self.name + " takes the medicine and is no longer sick!")
 
+    def receive_health_potion (self, num):
+        if (num > 0):
+            self.health = self.max_health
+            announce (self.name + " takse a health potion and is now fully healed!")
+
     def inflict_damage (self, num, deathcause):
         '''Injures the pirate. If needed, it will record the pirate's cause of death'''
         self.health = self.health - num
@@ -88,6 +93,8 @@ class CrewMate(Context):
             self.inflict_damage (1, "Died of their illness")
             if(self.health <= 0):
                 announce(self.name + " has died of their illness!")
+        if !(self.sick):
+            self.health += 2
         self.start_turn ()
 
     def start_turn (self):

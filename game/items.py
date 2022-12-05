@@ -38,3 +38,11 @@ class Flintlock(Item):
         self.verb = "shoot"
         self.verb2 = "shoots"
 
+class Mysterios_Sword(Item):
+    def __init__(self):
+        super().__init__("Mysterious Sword", 1000000) #Note: price is in shillings (a silver coin, 20 per pound)
+        self.damage = (50, 100)
+        self.skill = "swords"
+        self.verb = "slash"
+        self.verb2 = "slashes"
+
