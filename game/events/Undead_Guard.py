@@ -14,8 +14,8 @@ class UndeadGuard (event.Event):
         result["message"] = "You have defeated the undead guards!"
         monsters = []
         if random.randrange(2) == 0:
-            monsters.append(Guard("Undead Guard captain"))
-            monsters[0].speed = 1.2*monsters[0].speed
+            monsters.append(Guard("Undead Guard Captain"))
+            monsters[0].speed = 1.5*monsters[0].speed
             monsters[0].health = 2*monsters[0].health
         n_appearing = random.randrange(1,5)
         n = 1
@@ -24,5 +24,9 @@ class UndeadGuard (event.Event):
             n += 1
         announce ("This guard seems different from the rest, but he's still attacking you")
         Combat(monsters).combat()
-        result["newevents"] = [ self ]
+        if random.randrange(2) == 0:
+            result["newevents"] = [ self ]
+        else:
+            result["newevents"] = [ ]
+        
         return result

@@ -3,6 +3,9 @@ import random
 from game.combat import Combat
 from game.combat import Unknown
 from game.display import announce
+import game.config as config
+
+
 
 class UnknownBoss(event.Event):
 
@@ -13,12 +16,12 @@ class UnknownBoss(event.Event):
         result = {}
         result["message"] = "the bigger they are..the harder they fall"
         monsters = []
-        n_appearing = random.randrange(1)
+        n_appearing = 1
         n = 1
         while n <= n_appearing:
-            monsters.append(Unknown("Drowned pirate "+str(n)))
+            monsters.append(Unknown("Unknown Monster "+str(n)))
             n += 1
         announce ("You are under attack by a behemoth, is resistance futile?")
         Combat(monsters).combat()
-        result["newevents"] = [ self ]
+        
         return result

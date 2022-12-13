@@ -1,7 +1,8 @@
 from game import event
 import random
 import game.config as config
-from ship import 
+
+ 
 
 class Fish(event.Event):
 
@@ -9,19 +10,18 @@ class Fish(event.Event):
         self.name = " you attempted to catch some fish "
 
     def process (self, ship, food):
-        x = random.randint(1,20)
-        result = {}
+        x = random.randint(1,21)
         if x <= 5:
-            print ("No luck today, hope we still have some food left...")
-        elif 5 < x < 15:
-            ship.food += 20
-            print ("Not bad, at least we wont starve today")
-        elif 15 <= x <= 19:
-            ship.food += 50
-            print ("A lot of fish today, should hold us over for a few days")
+            announce ("No luck today, hope we still have some food left...")
+        elif x > 5 and x < 15:
+            config.the_player.ship.food += 20
+            announce ("Not bad, at least we wont starve today")
+        elif x >= 15 and x <= 19:
+            config.the_player.ship.food += 50
+            announce ("A lot of fish today, should hold us over for a few days")
         elif x == 20:
-            ship.food += 100
-            print ("You caught a whale...with a fishing rod...maybe you should become a professinal")
+            config.the_player.ship.food += 100
+            announce ("You caught a whale...with a fishing rod...maybe you should become a professinal fisher instead of a pirate")
         return result
             
         

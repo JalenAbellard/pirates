@@ -116,6 +116,14 @@ class Player (Context):
                     self.location.process_verb ("west", cmd_list, nouns)
                 elif (cmd_list[1] == "east"):
                     self.location.process_verb ("east", cmd_list, nouns)
+                elif (cmd_list[1] == "forward"):
+                    self.location.process_verb ("forward", cmd_list, nouns)
+                elif (cmd_list[1] == "backwards"):
+                    self.location.process_verb ("backwards", cmd_list, nouns)
+                elif (cmd_list[1] == "right"):
+                    self.location.process_verb ("right", cmd_list, nouns)
+                elif (cmd_list[1] == "left"):
+                    self.location.process_verb ("left", cmd_list, nouns)
                 elif (cmd_list[1] == "ashore" and self.location == self.ship):
                     if self.ship.get_loc ().visitable == True:
                         self.ship.process_verb ("anchor", cmd_list, nouns)

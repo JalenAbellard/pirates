@@ -5,6 +5,7 @@ from game.location import *
 from game.context import Context
 from game.display import announce
 import game.config as config
+#from game.event import fish
 
 class Ship (Context):
     '''The pirate ship. Mostly handles food and sailing around the ocean map.'''
@@ -13,6 +14,7 @@ class Ship (Context):
         self.hx = 0
         self.hy = 0
         self.medicine = 5
+        self.healthpotion = 5
         self.food = 100
         self.loc = None
 
@@ -22,7 +24,9 @@ class Ship (Context):
         self.verbs['east'] = self
         self.verbs['west'] = self
         self.verbs['give'] = self
-
+        self.verbs['fish'] = self
+        self.verbs['heal'] = self
+        
 
     def process_verb (self, verb, cmd_list, nouns):
         if (verb == "north"):
@@ -40,6 +44,19 @@ class Ship (Context):
         elif (verb == "anchor"):
             self.hx = 0
             self.hy = 0
+        elif (verb  == 'fish'):
+            x = random.randint(1,21)
+            if x <= 5:
+                announce ("No luck today, hope we still have some food left...")
+            elif x > 5 and x < 15:
+                config.the_player.ship.food += 20
+                announce ("Not bad, at least we wont starve today")
+            elif x >= 15 and x <= 19:
+                config.the_player.ship.food += 50
+                announce ("A lot of fish today, should hold us over for a few days")
+            elif x == 20:
+                config.the_player.ship.food += 100
+                announce ("You caught a whale...with a fishing rod...maybe you should become a professinal fisher instead of a pirate")
         elif (verb == "give"):
             # give medicine to crewmember
             if (len(cmd_list) > 3):
@@ -51,8 +68,20 @@ class Ship (Context):
                         announce ("no more medicine to give")
             else:
                 announce ("Give medicine to who?")
-        else:
-            announce ("Error: Ship object doe not understand verb " + verb)
+
+        #elif (verb == "heal"):
+            #if (len(cmd_list) > 2):
+             #   if (cmd_list[0] == "heal") and (cmd_list[1] in nouns.keys()):
+              #      if (self.healthpotion > 0):
+               #         nouns[cmd_list[1]].health = self.health_max
+                #        self.healthpotion = self.healthpotion - 1
+                 #   else:
+                  #      announce ("No health potions to give")
+            #else:
+              #  announce ("Heal who")
+
+      #  else:
+       #     announce ("Error: Ship object doe not understand verb " + verb)
 
 
     def print (self):
@@ -69,6 +98,7 @@ class Ship (Context):
             print ("ship heading is south")
 
         print ("ship has " + str (self.medicine) + " medicine")
+        print ("ship has " + str (self.healthpotion) + " medicine")
 
     def get_loc (self):
         return self.loc
